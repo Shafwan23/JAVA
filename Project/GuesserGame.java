@@ -5,7 +5,7 @@ import java.util.Scanner;
 class Guesser{
 	Scanner sc = new Scanner(System.in);
 	public int guessNum() {
-		System.out.print("Guesser guess the Number : ");
+		System.out.print("Guesser Say a Number : ");
 		int guessNum = sc.nextInt();
 		return guessNum;
 	}
@@ -14,7 +14,7 @@ class Guesser{
 class Player{
 	Scanner sc = new Scanner(System.in);
 	public int playerNum() {
-		System.out.println("Player guess the Number");
+		System.out.println("Player guess a Number");
 		int playerNum = sc.nextInt();
 		return playerNum;
 	}
