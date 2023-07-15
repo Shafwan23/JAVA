@@ -2,13 +2,13 @@ package OOPS;
 
 class A{
 	public void show(){
-		System.out.println("Lol");
+		System.out.println("Hahaha");
 	}
 }
 class B extends A{
 	
 }
-public class Inheritance {
+public class Inheritance{
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
