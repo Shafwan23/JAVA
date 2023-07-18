@@ -357,110 +357,112 @@ public class Association11 {
 		// performing setter injection to inject the values
 		account.setAccName("sachin");
 		account.setAccNo("ISB-222");
-		account.setAccType("current");
-						
-										// Create a Target object and inject the dependent object in the constructor
-										Employee employee = new Employee();
-										employee.setEid(10);
-										employee.setEname("sachin");
-										employee.setEaddress("IND");
-						
-										// Performing Setter injection to account
-										employee.setAccount(account);
-						
-										// checking the data of employee to see whether injection happened or not
-										employee.display();
-										
-										System.out.println("------------------------------------------------------------------------");
-										
-										//-----------------------------------------------------------------------------
-										
-										// Creating an Dependent object through constructor
-										Account1 account1 = new Account1("ISB-1111", "savings", "sachin");
-						
-										// Create a Target object and inject the dependent object in the constructor
-										Employee1 employee1 = new Employee1(10, "sachin", "MI", account1);
-						
-										// checking the data of employee to see whether injection happened or not
-										employee.display();
-										
-										System.out.println("-------------------------------------------------------------------------");
-										
-										//--------------------------------------------------------------------------------------
-						
-										// Creating an Dependent Object using Constructor injection
-										Employee2 emp1 = new Employee2(10, "sachin");
-										Employee2 emp2 = new Employee2(18, "kohli");
-										Employee2 emp3 = new Employee2(45, "rohith");
-						
-										// Creating an Array to perform One-Many Association
-										Employee2[] employees2 = new Employee2[3];
-										employees2[0] = emp1;
-										employees2[1] = emp2;
-										employees2[2] = emp3;
-						
-										// Creating an Target Object using Constructor Injection
-										Department department = new Department(123, "BCCI", "Dubai", employees2);
-										department.display();
-										
-										System.out.println("-------------------------------------------------------------------------");
-										
-										//-----------------------------------------------------------------------------------------
-										
-										// Creating a dependent object
-										Branch branch = new Branch("IN01", "VJYNGR");
-						
-										// Creating a target object
-										Student s1 = new Student(10, "sachin", 49, branch);
-										Student s2 = new Student(7, "dhoni", 41, branch);
-										Student s3 = new Student(18, "kohli", 35, branch);
-						
-										s1.getStudentDetails();
-										System.out.println();
-										
-										s2.getStudentDetails();
-										System.out.println();
-										
-										s3.getStudentDetails();
-										
-										System.out.println("-------------------------------------------------------------------------");
-										
-										//--------------------------------------------------------------------------------------------
-										
-										// Create a Dependent Object
-										Course c1 = new Course("INJava", "Java", 500);
-										Course c2 = new Course("INPython", "Python", 1000);
-										Course c3 = new Course("INJS", "JavaScript", 1500);
-						
-										// Creating an Array to perform Many Association to the Target Object
-										Course[] courses1 = new Course[2];
-										courses1[0] = c1;
-										courses1[1] = c3;
-						
-										Course[] courses2 = new Course[2];
-										courses2[0] = c2;
-										courses2[1] = c3;
-						
-										Course[] courses3 = new Course[3];
-										courses3[0] = c1;
-										courses3[1] = c2;
-										courses3[2] = c3;
-						
-										// Creating an Target object to hold many Courses
-										Student1 s11 = new Student1(10, "sachin", 49, courses1);
-										Student1 s12 = new Student1(7, "dhoni", 41, courses2);
-										Student1 s13 = new Student1(18, "kohli", 35, courses3);
-						
-										s11.getStudentDetails();
-										System.out.println();
-						
-										s12.getStudentDetails();
-										System.out.println();
-						
-										s13.getStudentDetails();
-										System.out.println();
-										
-										System.out.println("-------------------------------------------------------------------------");
-				
+		account.setAccType("current");	
+
+		// Create a Target object and inject the dependent object in the constructor
+		Employee employee = new Employee();
+		employee.setEid(10);
+		employee.setEname("sachin");
+		employee.setEaddress("IND");
+
+		// Performing Setter injection to account
+		employee.setAccount(account);
+
+		// checking the data of employee to see whether injection happened or not
+		employee.display();
+		
+		System.out.println("------------------------------------------------------------------------");
+		
+		//-----------------------------------------------------------------------------
+		
+		// Creating an Dependent object through constructor
+		Account1 account1 = new Account1("ISB-1111", "savings", "sachin");
+
+		// Create a Target object and inject the dependent object in the constructor
+		Employee1 employee1 = new Employee1(10, "sachin", "MI", account1);
+
+		// checking the data of employee to see whether injection happened or not
+		employee.display();
+		
+		System.out.println("-------------------------------------------------------------------------");
+		
+		//--------------------------------------------------------------------------------------
+
+		// Creating an Dependent Object using Constructor injection
+		Employee2 emp1 = new Employee2(10, "sachin");
+		Employee2 emp2 = new Employee2(18, "kohli");
+		Employee2 emp3 = new Employee2(45, "rohith");
+
+		// Creating an Array to perform One-Many Association
+		Employee2[] employees2 = new Employee2[3];
+		employees2[0] = emp1;
+		employees2[1] = emp2;
+		employees2[2] = emp3;
+
+		// Creating an Target Object using Constructor Injection
+		Department department = new Department(123, "BCCI", "Dubai", employees2);
+		department.display();
+		
+		System.out.println("-------------------------------------------------------------------------");
+		
+		//-----------------------------------------------------------------------------------------
+		
+		// Creating a dependent object
+		Branch branch = new Branch("IN01", "VJYNGR");
+
+		// Creating a target object
+		Student s1 = new Student(10, "sachin", 49, branch);
+		Student s2 = new Student(7, "dhoni", 41, branch);
+		Student s3 = new Student(18, "kohli", 35, branch);
+
+		s1.getStudentDetails();
+		System.out.println();
+		
+		s2.getStudentDetails();
+		System.out.println();
+		
+		s3.getStudentDetails();
+		
+		System.out.println("-------------------------------------------------------------------------");
+		
+		//--------------------------------------------------------------------------------------------
+		
+		// Create a Dependent Object
+		Course c1 = new Course("INJava", "Java", 500);
+		Course c2 = new Course("INPython", "Python", 1000);
+		Course c3 = new Course("INJS", "JavaScript", 1500);
+
+		// Creating an Array to perform Many Association to the Target Object
+		Course[] courses1 = new Course[2];
+		courses1[0] = c1;
+		courses1[1] = c3;
+
+		Course[] courses2 = new Course[2];
+		courses2[0] = c2;
+		courses2[1] = c3;
+
+		Course[] courses3 = new Course[3];
+		courses3[0] = c1;
+		courses3[1] = c2;
+		courses3[2] = c3;
+
+		// Creating an Target object to hold many Courses
+		Student1 s11 = new Student1(10, "sachin", 49, courses1);
+		Student1 s12 = new Student1(7, "dhoni", 41, courses2);
+		Student1 s13 = new Student1(18, "kohli", 35, courses3);
+
+		s11.getStudentDetails();
+		System.out.println();
+
+		s12.getStudentDetails();
+		System.out.println();
+
+		s13.getStudentDetails();
+		System.out.println();
+		
+		System.out.println("-------------------------------------------------------------------------");
+
+
+
 	}
 }
