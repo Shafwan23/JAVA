@@ -1,5 +1,14 @@
 package OOPS;
 
+//relationship
+//1.IS-A relationship is used for  inheritance
+//2.HAS-A relationship is used for association
+//Dependency Injection - injecting the dependent object into target object
+//ex: dependent - address(city/pin/dooNO)
+//	  target    - Student(name/rollNo/address)
+//dependency injection is of two types
+//1.constructor injection 2.setter injection
+
 //one-one-Association(Setter Injection)
 class Employee {
 
@@ -147,6 +156,7 @@ class Account1 {
 }
 
 //---------------------------------------------------------------------------
+//one-many-Association(Constructor Injection)
 class Department {
 
 	// instance variables
@@ -212,68 +222,245 @@ class Employee2 {
 }
 
 //----------------------------------------------------------------------
+//many-one-Association(Constructor Injection)
+//Target Object
+class Student {
 
-public class Association {
-	//relationship
-	//1.IS-A relationship is used for  inheritance
-	//2.FOR-A relationship is used for association
-	//Dependency Injection - injecting the dependent object into target object
-	//ex: dependent - address(city/pin/dooNO)
-//	    target    - Student(name/rollNo/address)
-	//dependency injection is of two types
-	//1.constructor injection 2.setter injection
-	
+	private Integer sid;
+	private String sname;
+	private Integer sage;
+
+	// HAS-A variable
+	private Branch branch;
+
+	// Constructor Injection
+	public Student(Integer sid, String sname, Integer sage, Branch branch) {
+		this.sid = sid;
+		this.sname = sname;
+		this.sage = sage;
+		this.branch = branch;
+	}
+	public void getStudentDetails() {
+		System.out.println("Student details are :: ");
+		System.out.println("SID is   :: " + sid);
+		System.out.println("SNAME is :: " + sname);
+		System.out.println("SAGE  is :: " + sage);
+
+		System.out.println("************************************");
+		System.out.println("Branch details are :: ");
+		System.out.println("BID   is :: " + branch.getBid());
+		System.out.println("BNAME is :: " + branch.getBloc());
+	}
+}
+
+//Dependent object
+class Branch {
+	private String bid;
+	private String bloc;
+
+	// Constructor injection
+	public Branch(String bid, String bloc) {
+		this.bid = bid;
+		this.bloc = bloc;
+	}
+
+	//Getters to get the value
+	public String getBid() {
+		return bid;
+	}
+
+	public String getBloc() {
+		return bloc;
+	}
+}
+
+//-----------------------------------------------------------------------
+//many-many-Association(Constructor Injection)
+
+//Target Object
+class Student1 {
+
+	private Integer sid;
+	private String sname;
+	private Integer sage;
+
+	// HAS-A variable
+	private Course[] courses;
+
+	// Constructor injection
+	public Student1(Integer sid, String sname, Integer sage, Course[] courses) {
+		this.sid = sid;
+		this.sname = sname;
+		this.sage = sage;
+		this.courses = courses;
+	}
+
+	public void getStudentDetails() {
+		System.out.println("Student details are :: ");
+		System.out.println("SID is   :: " + sid);
+		System.out.println("SNAME is :: " + sname);
+		System.out.println("SAGE  is :: " + sage);
+
+		System.out.println("*************************************");
+		
+		
+		System.out.println("Course details are :: ");
+		
+		//Performing data navigation to access course details
+		for (Course course : courses) {
+			System.out.println("CID   is :: " + course.getCid());
+			System.out.println("CNAME is :: " + course.getCname());
+			System.out.println("COST  is :: " + course.getCost());
+		}
+
+	}
+
+}
+
+//Dependent Object
+class Course {
+
+	private String cid;
+	private String cname;
+	private Integer cost;
+
+	// Constructor injection
+	public Course(String cid, String cname, Integer cost) {
+		this.cid = cid;
+		this.cname = cname;
+		this.cost = cost;
+	}
+
+	//Getters to send the data
+	public String getCid() {
+		return cid;
+	}
+
+	public String getCname() {
+		return cname;
+	}
+
+	public Integer getCost() {
+		return cost;
+	}
+
+}
+
+//-----------------------------------------------------------------------
+//Main Method
+
+public class Association11 {
 	public static void main(String args[]) {
 		// Creating an Dependent object
-				Account account = new Account();
-
-				// performing setter injection to inject the values
-				account.setAccName("sachin");
-				account.setAccNo("ISB-222");
-				account.setAccType("current");
-
-				// Create a Target object and inject the dependent object in the constructor
-				Employee employee = new Employee();
-				employee.setEid(10);
-				employee.setEname("sachin");
-				employee.setEaddress("IND");
-
-				// Performing Setter injection to account
-				employee.setAccount(account);
-
-				// checking the data of employee to see whether injection happened or not
-				employee.display();
+		Account account = new Account();
+						
+		// performing setter injection to inject the values
+		account.setAccName("sachin");
+		account.setAccNo("ISB-222");
+		account.setAccType("current");
+						
+										// Create a Target object and inject the dependent object in the constructor
+										Employee employee = new Employee();
+										employee.setEid(10);
+										employee.setEname("sachin");
+										employee.setEaddress("IND");
+						
+										// Performing Setter injection to account
+										employee.setAccount(account);
+						
+										// checking the data of employee to see whether injection happened or not
+										employee.display();
+										
+										System.out.println("------------------------------------------------------------------------");
+										
+										//-----------------------------------------------------------------------------
+										
+										// Creating an Dependent object through constructor
+										Account1 account1 = new Account1("ISB-1111", "savings", "sachin");
+						
+										// Create a Target object and inject the dependent object in the constructor
+										Employee1 employee1 = new Employee1(10, "sachin", "MI", account1);
+						
+										// checking the data of employee to see whether injection happened or not
+										employee.display();
+										
+										System.out.println("-------------------------------------------------------------------------");
+										
+										//--------------------------------------------------------------------------------------
+						
+										// Creating an Dependent Object using Constructor injection
+										Employee2 emp1 = new Employee2(10, "sachin");
+										Employee2 emp2 = new Employee2(18, "kohli");
+										Employee2 emp3 = new Employee2(45, "rohith");
+						
+										// Creating an Array to perform One-Many Association
+										Employee2[] employees2 = new Employee2[3];
+										employees2[0] = emp1;
+										employees2[1] = emp2;
+										employees2[2] = emp3;
+						
+										// Creating an Target Object using Constructor Injection
+										Department department = new Department(123, "BCCI", "Dubai", employees2);
+										department.display();
+										
+										System.out.println("-------------------------------------------------------------------------");
+										
+										//-----------------------------------------------------------------------------------------
+										
+										// Creating a dependent object
+										Branch branch = new Branch("IN01", "VJYNGR");
+						
+										// Creating a target object
+										Student s1 = new Student(10, "sachin", 49, branch);
+										Student s2 = new Student(7, "dhoni", 41, branch);
+										Student s3 = new Student(18, "kohli", 35, branch);
+						
+										s1.getStudentDetails();
+										System.out.println();
+										
+										s2.getStudentDetails();
+										System.out.println();
+										
+										s3.getStudentDetails();
+										
+										System.out.println("-------------------------------------------------------------------------");
+										
+										//--------------------------------------------------------------------------------------------
+										
+										// Create a Dependent Object
+										Course c1 = new Course("INJava", "Java", 500);
+										Course c2 = new Course("INPython", "Python", 1000);
+										Course c3 = new Course("INJS", "JavaScript", 1500);
+						
+										// Creating an Array to perform Many Association to the Target Object
+										Course[] courses1 = new Course[2];
+										courses1[0] = c1;
+										courses1[1] = c3;
+						
+										Course[] courses2 = new Course[2];
+										courses2[0] = c2;
+										courses2[1] = c3;
+						
+										Course[] courses3 = new Course[3];
+										courses3[0] = c1;
+										courses3[1] = c2;
+										courses3[2] = c3;
+						
+										// Creating an Target object to hold many Courses
+										Student1 s11 = new Student1(10, "sachin", 49, courses1);
+										Student1 s12 = new Student1(7, "dhoni", 41, courses2);
+										Student1 s13 = new Student1(18, "kohli", 35, courses3);
+						
+										s11.getStudentDetails();
+										System.out.println();
+						
+										s12.getStudentDetails();
+										System.out.println();
+						
+										s13.getStudentDetails();
+										System.out.println();
+										
+										System.out.println("-------------------------------------------------------------------------");
 				
-				System.out.println("--------------------------------------------");
-				
-				//-----------------------------------------------------------------------------
-				
-				// Creating an Dependent object through constructor
-				Account1 account1 = new Account1("ISB-1111", "savings", "sachin");
-
-				// Create a Target object and inject the dependent object in the constructor
-				Employee1 employee1 = new Employee1(10, "sachin", "MI", account1);
-
-				// checking the data of employee to see whether injection happened or not
-				employee.display();
-				
-				System.out.println("---------------------------------------------");
-				
-				//--------------------------------------------------------------------------------------
-
-				// Creating an Dependent Object using Constructor injection
-				Employee2 emp1 = new Employee2(10, "sachin");
-				Employee2 emp2 = new Employee2(18, "kohli");
-				Employee2 emp3 = new Employee2(45, "rohith");
-
-				// Creating an Array to perform One-Many Association
-				Employee2[] employees2 = new Employee2[3];
-				employees2[0] = emp1;
-				employees2[1] = emp2;
-				employees2[2] = emp3;
-
-				// Creating an Target Object using Constructor Injection
-				Department department = new Department(123, "BCCI", "Dubai", employees2);
-				department.display();
 	}
 }
