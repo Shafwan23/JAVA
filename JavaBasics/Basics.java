@@ -73,7 +73,7 @@ public class Basics {
 		System.out.println(x3);
 		
 		double y1=5;
-		double y2 = 2;
+		double y2 =3;
 		double y3 = y1/y2;
 		System.out.println(y3);
 		
